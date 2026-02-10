@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'main.dart';
+import 'login.dart';
 
 
 class Splash extends StatefulWidget {
@@ -20,7 +20,7 @@ class _SplashState extends State<Splash> {
   navigatetohome() async {
     await Future.delayed(Duration(milliseconds: 5000), (() {}));
     Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) {
-      return const MyHomePage(title: 'Flutter Demo Home Page');
+      return LoginPage();
     })));
   }
 
