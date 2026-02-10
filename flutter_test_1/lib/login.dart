@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Welcome',
+                'Welkom',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 6),
               Text(
-                'Sign In to continue',
+                'Log in om door te gaan',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.normal,
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Gebruikersnaam',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Wachtwoord',
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 26),
               Center(
                   child: Text(
-                    'Forgot Password?',
+                    'Wachtwoord vergeten?',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 10),
               Center(
                 child: Text(
-                  "Don't have an account? Sign Up",
+                  "Geen account? Registreer",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Poppins',
