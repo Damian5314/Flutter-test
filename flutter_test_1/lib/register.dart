@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main.dart' as main_app;
-import 'register.dart';
-import 'password.dart';
+import 'login.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,21 +10,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Login 2025',
+      title: 'Register 2025',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: RegisterPage(),
     );
   }
 }
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -57,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 6),
               Text(
-                'Log in om door te gaan',
+                'Registreer om door te gaan',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.normal,
@@ -66,6 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 26),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 16),
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
@@ -78,6 +84,15 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordController,
                 decoration: InputDecoration(
                   labelText: 'Wachtwoord',
+                  border: OutlineInputBorder(),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Herhaal wachtwoord',
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
@@ -108,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   child: Text(
-                    'Login',
+                    'Registreer',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -117,40 +132,19 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 26),
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    // Navigeer terug wachtwoord scherm
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => PasswordPage()),
-                    );
-                  },
-                  child: Text(
-                    "Wachtwoord vergeten?",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 14,
-                      color: Color(0xFF3B62FF),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: 10),
               SizedBox(height: 10),
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Navigeer terug register scherm
+                    // Navigeer terug naar login scherm
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   child: Text(
-                    "Nog geen account? Registreer hier",
+                    "Al een account? Log hier in",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Poppins',
