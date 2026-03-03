@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart' as main_app;
+import 'home.dart';
 import 'register.dart';
 import 'password.dart';
 
@@ -94,9 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => main_app.MyHomePage(
-                            title: 'Druk appje',
-                          ),
+                          builder: (context) => HomePage(),
                         ),
                       );
                     }
