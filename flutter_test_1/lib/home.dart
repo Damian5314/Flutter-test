@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'settings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,6 +9,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _messageController = TextEditingController();
+  bool _hasText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _messageController.addListener(() {
+      setState(() {
+        _hasText = _messageController.text.isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  void _showPlusOptions() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.photo),
+              title: Text('Foto'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: Icon(Icons.attach_file),
+              title: Text('Bestand'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: Icon(Icons.camera_alt),
+              title: Text('Camera'),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +67,24 @@ class _HomePageState extends State<HomePage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
-              child: Center(
-                child: Text(
-                  'Gesprekken',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
+              child: Stack(
+                children: [
+                  Center(
+                    child: Text(
+                      'Gesprekken',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      icon: Icon(Icons.close, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             ListTile(
@@ -43,12 +103,12 @@ class _HomePageState extends State<HomePage> {
             ),
             Spacer(),
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Uitloggen'),
+              leading: Icon(Icons.settings),
+              title: Text('Instellingen'),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
                 );
               },
             ),
@@ -64,11 +124,30 @@ class _HomePageState extends State<HomePage> {
           ),
           Padding(
             padding: EdgeInsets.all(16),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: 'Stel je vraag',
-                border: OutlineInputBorder(),
-              ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: _showPlusOptions,
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    decoration: InputDecoration(
+                      hintText: 'Stel je vraag',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                if (_hasText)
+                  IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      // TODO: verstuur bericht
+                      _messageController.clear();
+                    },
+                  ),
+              ],
             ),
           ),
         ],
